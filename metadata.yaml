@@ -1,7 +1,5 @@
-name: astrbot_plugin_agreement
-desc: 用户协议签订插件，首次私聊时发送协议
-author: 星恒梦落
+name: test_keyword
+desc: 关键词测试插件
+author: 测试
 version: 1.0.0
-display_name: 协议签订插件
-support_platforms:
-  - aiocqhttp
+display_name: 关键词测试
