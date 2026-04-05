@@ -25,7 +25,6 @@ class AgreementPlugin(Star):
         super().__init__(context)
         logger.info("协议签订插件已加载")
 
-    # ✅ 正确：没有装饰器，方法名必须是 on_message
     async def on_message(self, event: AstrMessageEvent):
         # 只处理私聊
         if event.get_message_type() != "private":
