@@ -1,18 +1,22 @@
-from astrbot.api.event import filter, AstrMessageEvent
+from astrbot.api.event import AstrMessageEvent
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
 
-@register("test_keyword", "测试", "关键词测试插件", "1.0.0")
-class TestKeywordPlugin(Star):
+@register("test_qq", "测试", "QQ平台测试", "1.0.0")
+class TestQQPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
-        logger.info("测试关键词插件已加载")
+        logger.info("QQ测试插件已加载")
 
-    @filter.regex(r"干什么")
-    async def on_what_to_do(self, event: AstrMessageEvent):
-        logger.info(f"关键词测试插件被触发！消息: {event.message_str}")
-        yield event.plain_result("是啊，干什么")
+    async def on_message(self, event: AstrMessageEvent):
+        logger.info(f"QQ测试插件收到消息")
+        logger.info(f"平台: {event.get_platform_name()}")
+        logger.info(f"消息类型: {event.get_message_type()}")
+        logger.info(f"内容: {event.message_str}")
+        logger.info(f"发送者: {event.get_sender_id()}")
+        # 回复一条测试消息
+        yield event.plain_result(f"收到消息: {event.message_str}")
         event.stop_event()
 
     async def terminate(self):
-        logger.info("测试关键词插件已终止")
+        pass
