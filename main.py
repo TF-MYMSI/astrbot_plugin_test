@@ -3,8 +3,7 @@ from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
 import time
 
-# 默认协议文本
-DEFAULT_AGREEMENT_TEXT = """
+AGREEMENT_TEXT = """
 星恒梦落用户使用协议
 
 版本：v1.0
@@ -47,8 +46,6 @@ DEFAULT_AGREEMENT_TEXT = """
 class AgreementPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
-        # 通过 context 获取配置
-        self.agreement_text = self.context.config.get("agreement_text", DEFAULT_AGREEMENT_TEXT)
         logger.info("协议签订插件已加载")
 
     async def on_message(self, event: AstrMessageEvent):
@@ -63,7 +60,7 @@ class AgreementPlugin(Star):
             
             # 未签协议
             if status is None:
-                yield event.plain_result(self.agreement_text)
+                yield event.plain_result(AGREEMENT_TEXT)
                 await self.put_kv_data(f"agreed_{uid}", "waiting")
                 await self.put_kv_data(f"last_sent_{uid}", time.time())
                 event.stop_event()
@@ -92,7 +89,7 @@ class AgreementPlugin(Star):
                     return
                 
                 await self.put_kv_data(f"last_sent_{uid}", now)
-                yield event.plain_result(self.agreement_text)
+                yield event.plain_result(AGREEMENT_TEXT)
                 event.stop_event()
                 return
             
