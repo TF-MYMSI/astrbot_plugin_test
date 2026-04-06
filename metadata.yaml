@@ -1,4 +1,4 @@
-name: test_keyword
+name: astrbot_plugin_test_keyword
 desc: 关键词测试插件
 author: 测试
 version: 1.0.0
