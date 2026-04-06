@@ -1,5 +1,5 @@
-name: astrbot_plugin_xieyi
-desc: 用户协议签订插件，首次私聊时发送协议
-author: 星恒梦落
+name: astrbot_plugin_test
+desc: 测试插件，用于检测插件加载和消息触发
+author: 测试
 version: 1.0.0
-display_name: 协议签订插件
+display_name: 测试插件
